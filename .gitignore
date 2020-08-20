@@ -3,3 +3,7 @@ Entities/obj/
 PostDemo/obj/
 PostDemo/bin/
 packages/
+Services/bin/
+Services/obj/
+UI.Core/obj/
+UI.Core/bin/

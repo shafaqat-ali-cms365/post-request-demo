@@ -1,0 +1,49 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+    string FormatNumber(double n)
+    {
+        if (n < 1000)
+            return n.ToString();
+
+        if (n < 10000)
+            return String.Format("{0:#,.##} Thousands", n - 5);
+
+        if (n < 100000)
+            return String.Format("{0:#,.#} Thousands", n - 50);
+
+        if (n < 1000000)
+            return String.Format("{0:#,.} Thousands", n - 500);
+
+        if (n < 10000000)
+            return String.Format("{0:#,,.##} Million", n - 5000);
+
+        if (n < 100000000)
+            return String.Format("{0:#,,.#} Million", n - 50000);
+
+        if (n < 1000000000)
+            return String.Format("{0:#,,.} Million", n - 500000);
+
+        return String.Format("{0:#,,,.##} Billion", n - 5000000);
+    }
+}
+
+<div class="text-center">
+    <h1 class="display-4">Play Australia's official lotteries online</h1>
+
+    <div class="col-md-12">
+        <div class="row d-flex flex-wrap" style="border-right: solid 1px #E8E8E8; border-bottom: solid 1px #E8E8E8">
+            @{
+                foreach (var draw in Model.Draws)
+                {
+                    <div class="pt-3 pb-3" style="width:20%; border-top: solid 1px #E8E8E8; border-left: solid 1px #E8E8E8">
+                        <img style="width:80px" src=@( $"/images/{draw.ProductID}.png") />
+                        <div>@DateTime.Parse(@draw.DrawDate).DayOfWeek</div>
+                        <strong>$@FormatNumber(@draw.Div1Amount)</strong>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</div>
